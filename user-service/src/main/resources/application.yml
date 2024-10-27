@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: user-service  # Nombre del microservicio
+  datasource:
+    url: jdbc:postgresql://localhost:5433/brightmind  # URL de la base de datos
+    username: postgres                                # Usuario de la base de datos
+    password: root                                    # Contraseña de la base de datos (la que estás usando en pgAdmin)
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update                                # O "create" si estás en desarrollo
+    show-sql: true                                    # Muestra las consultas SQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # URL del servidor Eureka
+  instance:
+    prefer-ip-address: true
+    hostname: localhost  # Asegúrate de que esto sea correcto si usas localhost
+    non-secure-port: 8081  # Este es el puerto que debería usar Eureka para acceder al servicio
+
+server:
+  port: 8081  # Puedes usar un puerto diferente para cada microservicio
+  forward-headers-strategy: framework
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs  # Ruta por defecto de Swagger para los endpoints de OpenAPI
+  swagger-ui:
+    path: /swagger-ui.html  # Ruta del UI de Swagger

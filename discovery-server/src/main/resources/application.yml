@@ -1,0 +1,13 @@
+server:
+  port: 8761  # Puerto en el que correrá el servidor Eureka
+
+eureka:
+  client:
+    register-with-eureka: false  # El servidor Eureka no se registra a sí mismo
+    fetch-registry: false        # No necesita buscar su propio registro
+  server:
+    enable-self-preservation: false  # Deshabilita la autoconservación para pruebas (no recomendado en producción)
+
+spring:
+  application:
+    name: discovery-server  # Nombre de la aplicación

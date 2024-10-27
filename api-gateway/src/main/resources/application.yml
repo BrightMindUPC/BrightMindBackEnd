@@ -1,0 +1,63 @@
+server:
+  port: 8080  # Puerto en el que correrá el API Gateway
+
+spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**, /api/users/v3/api-docs
+          filters:
+            - RewritePath=/api/users(?<segment>/.*), $\{segment}
+        - id: lesson-service
+          uri: lb://lesson-service
+          predicates:
+            - Path=/api/lessons/**, /api/lessons/v3/api-docs
+          filters:
+            - RewritePath=/api/lessons(?<segment>/.*), $\{segment}
+        - id: learning-paths-service
+          uri: lb://learning-paths-service
+          predicates:
+            - Path=/api/learning-paths/**, /api/learning-paths/v3/api-docs
+          filters:
+            - RewritePath=/api/learning-paths(?<segment>/.*), $\{segment}
+        - id: resource-service
+          uri: lb://resource-service
+          predicates:
+            - Path=/api/resources/**, /api/resources/v3/api-docs
+          filters:
+            - RewritePath=/api/resources(?<segment>/.*), $\{segment}
+        - id: chatbot-service
+          uri: lb://chatbot-service
+          predicates:
+            - Path=/api/chatbot-interactions/**, /api/chatbot-service/v3/api-docs
+          filters:
+            - RewritePath=/api/chatbot-interactions(?<segment>/.*), $\{segment}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # URL del servidor Eureka
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - url: /api/users/v3/api-docs
+        name: User Service API
+      - url: /api/lessons/v3/api-docs
+        name: Lesson Service API
+      - url: /api/learning-paths/v3/api-docs
+        name: Learning Paths Service API
+      - url: /api/resources/v3/api-docs
+        name: Resource Service API
+      - url: /api/chatbot-interactions/v3/api-docs
+        name: Chatbot Service API
+  api-docs:
+    path: /v3/api-docs
