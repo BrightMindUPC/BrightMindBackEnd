@@ -13,4 +13,5 @@ public class NotificationResponseDTO {
     private boolean isRead;
     private Long userId;
     private LocalDateTime timestamp;
+    private UserResponseDTO user; // Información del usuario si está disponible
 }

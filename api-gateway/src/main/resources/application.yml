@@ -39,6 +39,18 @@ spring:
             - Path=/api/chatbot-interactions/**, /api/chatbot-service/v3/api-docs
           filters:
             - RewritePath=/api/chatbot-interactions(?<segment>/.*), $\{segment}
+        - id: assessment-service
+          uri: lb://assessment-service
+          predicates:
+            - Path=/api/assessments/**, /api/assessment-service/v3/api-docs
+          filters:
+            - RewritePath=/api/assessments(?<segment>/.*), $\{segment}
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**, /api/notification-service/v3/api-docs
+          filters:
+            - RewritePath=/api/notifications(?<segment>/.*), $\{segment}
 
 eureka:
   client:
@@ -59,5 +71,9 @@ springdoc:
         name: Resource Service API
       - url: /api/chatbot-interactions/v3/api-docs
         name: Chatbot Service API
+      - url: /api/assessments/v3/api-docs
+        name: Assessment Service API
+      - url: /api/notifications/v3/api-docs
+        name: Notification Service API
   api-docs:
     path: /v3/api-docs

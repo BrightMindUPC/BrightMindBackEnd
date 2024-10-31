@@ -11,7 +11,7 @@ import upc.edu.pe.BrightMind.assessment_service.service.AssessmentService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/assessments")
+@RequestMapping("/api/assessments")
 public class AssessmentController {
 
     @Autowired
