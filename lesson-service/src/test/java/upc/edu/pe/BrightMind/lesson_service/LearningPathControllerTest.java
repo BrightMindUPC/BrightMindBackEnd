@@ -35,6 +35,8 @@ public class LearningPathControllerTest {
 
     @Test
     public void testCreateLearningPath() throws Exception {
+        // Cubre la historia de usuario: US008 - Áreas de Estudio de Interés
+        // Permite crear un camino de aprendizaje que organiza lecciones según áreas de interés del usuario.
         CreateLearningPathDTO requestDTO = new CreateLearningPathDTO();
         requestDTO.setName("Java Basics");
         requestDTO.setUserId(1L);

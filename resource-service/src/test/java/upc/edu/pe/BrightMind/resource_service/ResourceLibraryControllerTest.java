@@ -42,6 +42,8 @@ public class ResourceLibraryControllerTest {
 
     @Test
     public void testCreateResource() throws Exception {
+        // Cubre la historia de usuario: US017 - Acceder a una Biblioteca de Recursos Educativos
+        // Permite crear un recurso en la biblioteca de recursos educativos.
         MockMultipartFile pdfFile = new MockMultipartFile("pdfFile", "test.pdf", "application/pdf", "Sample PDF content".getBytes());
 
         ResourceLibraryResponseDTO responseDTO = new ResourceLibraryResponseDTO();
@@ -65,6 +67,8 @@ public class ResourceLibraryControllerTest {
 
     @Test
     public void testGetResourceById() throws Exception {
+        // Cubre la historia de usuario: US018 - Acceder a Recursos Educativos Recomendados por el Chatbot
+        // Permite obtener un recurso educativo por su ID.
         ResourceLibraryResponseDTO responseDTO = new ResourceLibraryResponseDTO();
         responseDTO.setId(1L);
         responseDTO.setTitle("Sample Resource");
@@ -111,6 +115,8 @@ public class ResourceLibraryControllerTest {
 
     @Test
     public void testGetResourcesByGrade() throws Exception {
+        // Cubre la historia de usuario: US009 - Establecer Nivel Académico Actual
+        // Filtra los recursos de la biblioteca de acuerdo con el grado académico.
         ResourceLibraryResponseDTO responseDTO = new ResourceLibraryResponseDTO();
         responseDTO.setId(1L);
         responseDTO.setTitle("Sample Resource");

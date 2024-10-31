@@ -54,6 +54,8 @@ public class ChatbotInteractionControllerIntegrationTest {
 
     @Test
     public void testCreateInteraction() throws Exception {
+        // Cubre la historia de usuario: US011 - Consultar Dudas Académicas en Tiempo Real
+        // Permite crear una interacción con el chatbot donde el usuario hace una pregunta y recibe una respuesta.
         CreateChatbotInteractionDTO dto = new CreateChatbotInteractionDTO(user.getId(), "Hello, bot!", "Hello, user!");
 
         mockMvc.perform(post("/api/chatbot-interactions")
@@ -86,6 +88,8 @@ public class ChatbotInteractionControllerIntegrationTest {
 
     @Test
     public void testGetInteractionsByUserId() throws Exception {
+        // Cubre la historia de usuario: US013 - Revisar Historial de Conversaciones con el Chatbot
+        // Permite al usuario consultar todas sus interacciones pasadas con el chatbot.
         chatbotInteractionService.createInteraction(new CreateChatbotInteractionDTO(user.getId(), "Hello", "Hi there!"));
         chatbotInteractionService.createInteraction(new CreateChatbotInteractionDTO(user.getId(), "How are you?", "I'm good!"));
 

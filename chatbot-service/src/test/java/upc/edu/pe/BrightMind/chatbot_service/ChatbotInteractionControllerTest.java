@@ -30,6 +30,7 @@ public class ChatbotInteractionControllerTest {
 
     @Test
     public void testCreateInteraction() throws Exception {
+        // Cubre la historia de usuario: US011 - Consultar Dudas Académicas en Tiempo Real
         CreateChatbotInteractionDTO dto = new CreateChatbotInteractionDTO(1L, "Hello, bot!", "Hello, user!");
         ChatbotInteractionDTO responseDTO = new ChatbotInteractionDTO();
         responseDTO.setId(1L);

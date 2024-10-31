@@ -49,6 +49,8 @@ public class ResourceLibraryServiceIntegrationTest {
     // Test de integración para crear un recurso
     @Test
     void testCreateResource_Success() throws Exception {
+        // Cubre la historia de usuario: US017 - Acceder a una Biblioteca de Recursos Educativos
+        // Permite añadir recursos en la biblioteca para los usuarios.
         MockMultipartFile pdfFile = new MockMultipartFile("pdfFile", "test.pdf", MediaType.APPLICATION_PDF_VALUE, "Sample PDF content".getBytes());
 
         mockMvc.perform(multipart("/api/resources")

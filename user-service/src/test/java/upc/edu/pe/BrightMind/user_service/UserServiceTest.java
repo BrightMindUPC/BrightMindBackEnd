@@ -58,6 +58,8 @@ public class UserServiceTest {
 
     @Test
     public void testUpdateUser_Success() {
+        // Cubre la historia de usuario: US004 - Crear una Cuenta de Usuario Básica
+        // Prueba la creación de un nuevo usuario en el sistema.
         User existingUser = new User("existingUser", "existing@example.com", "password", Role.STUDENT);
         existingUser.setId(1L);
 

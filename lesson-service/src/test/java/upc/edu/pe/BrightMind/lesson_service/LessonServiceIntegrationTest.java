@@ -38,6 +38,8 @@ public class LessonServiceIntegrationTest {
     }
     @Test
     public void testCreateLesson() {
+        // Cubre la historia de usuario: US017 - Acceder a una Biblioteca de Recursos Educativos
+        // Permite crear una lección que será parte de la biblioteca de recursos educativos.
         CreateLessonDTO dto = new CreateLessonDTO();
         dto.setTitle("Lesson 1");
         dto.setSubject(Subject.MATH);

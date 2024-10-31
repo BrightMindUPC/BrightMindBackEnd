@@ -136,6 +136,8 @@ class ResourceLibraryServiceTest {
     // Test para obtener recursos por grado
     @Test
     void testGetResourcesByGrade() {
+        // Cubre la historia de usuario: US009 - Establecer Nivel Académico Actual
+        // Permite obtener recursos según el grado del usuario.
         List<ResourceLibrary> resources = Stream.of(
                 new ResourceLibrary("Resource 1", Subject.MATH, Grade.FIRST_YEAR, "Content 1".getBytes()),
                 new ResourceLibrary("Resource 2", Subject.SCIENCE, Grade.FIRST_YEAR, "Content 2".getBytes())

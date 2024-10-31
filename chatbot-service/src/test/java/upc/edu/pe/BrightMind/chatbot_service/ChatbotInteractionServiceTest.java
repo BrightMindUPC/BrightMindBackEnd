@@ -47,6 +47,7 @@ public class ChatbotInteractionServiceTest {
 
     @Test
     public void testCreateInteraction() {
+        // Cubre la historia de usuario: US011 - Consultar Dudas Académicas en Tiempo Real
         ChatbotInteraction interaction = new ChatbotInteraction();
         interaction.setId(1L);
         interaction.setUser(user);  // Configura el usuario aquí

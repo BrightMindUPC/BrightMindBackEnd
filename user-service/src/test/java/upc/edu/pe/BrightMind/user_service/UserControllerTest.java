@@ -39,6 +39,8 @@ public class UserControllerTest {
 
     @Test
     public void testCreateUser() throws Exception {
+        // Cubre la historia de usuario: US004 - Crear una Cuenta de Usuario Básica
+        // Permite la creación de una cuenta de usuario en el sistema con sus datos básicos.
         UserRequestDTO requestDTO = new UserRequestDTO();
         requestDTO.setUsername("testUser");
         requestDTO.setEmail("test@example.com");
