@@ -73,4 +73,9 @@ public class UserController {
         UserResponseDTO userResponseDTO = userService.getUserByEmail(email);
         return ResponseEntity.ok(userResponseDTO);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }
