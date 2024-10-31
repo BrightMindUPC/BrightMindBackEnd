@@ -16,5 +16,14 @@ public class CreateChatbotInteractionDTO {
 
     @NotBlank
     private String botResponse;
-}
 
+    // Constructor con parámetros
+    public CreateChatbotInteractionDTO(Long userId, String userMessage, String botResponse) {
+        this.userId = userId;
+        this.userMessage = userMessage;
+        this.botResponse = botResponse;
+    }
+
+    // Constructor vacío (necesario para serialización/deserialización)
+    public CreateChatbotInteractionDTO() {}
+}
