@@ -21,10 +21,10 @@ eureka:
   instance:
     prefer-ip-address: true
     hostname: ${APP_HOSTNAME:localhost}  # Asegúrate de que esto sea correcto si usas localhost
-    non-secure-port: 8083  # Este es el puerto que debería usar Eureka para acceder al servicio
+    non-secure-port: 8080  # Este es el puerto que debería usar Eureka para acceder al servicio
 
 server:
-  port: 8083  # Puedes usar un puerto diferente para cada microservicio
+  port: 8080  # Puedes usar un puerto diferente para cada microservicio
   forward-headers-strategy: framework
 
 springdoc:
