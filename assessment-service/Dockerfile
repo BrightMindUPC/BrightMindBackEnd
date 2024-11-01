@@ -15,8 +15,7 @@ RUN mvn clean package
 FROM amazoncorretto:17-alpine-jdk
 
 WORKDIR /app
-ENV PORT=8085
-ENV LOGGING_LEVEL=INFO
+ENV PORT=8080
 
 # Copiamos el JAR de la etapa de construcción
 COPY --from=build /app/target/*.jar ./app.jar
