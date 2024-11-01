@@ -2,7 +2,7 @@ spring:
   application:
     name: resource-service  # Nombre del microservicio
   datasource:
-    url: jdbc:postgresql://${DB_HOSTNAME:localhost}:${PORT:5433}/brightmind  # URL de la base de datos
+    url: jdbc:postgresql://${DB_HOSTNAME:localhost}:${DB_PORT:5433}/brightmind  # URL de la base de datos
     username: ${DB_USERNAME:root}                 # Usuario de la base de datos
     password: ${DB_PASSWORD:root}                # Contraseña de la base de datos (la que estás usando en pgAdmin)
     driver-class-name: org.postgresql.Driver
