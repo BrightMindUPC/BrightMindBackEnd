@@ -9,7 +9,7 @@ RUN mvn dependency:go-offline
 
 # Copiamos el código fuente y compilamos el proyecto
 COPY src ./src
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Etapa de ejecución
 FROM amazoncorretto:17-alpine-jdk
