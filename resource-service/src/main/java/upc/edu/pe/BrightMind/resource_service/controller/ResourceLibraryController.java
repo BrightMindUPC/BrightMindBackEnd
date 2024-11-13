@@ -24,6 +24,13 @@ public class ResourceLibraryController {
     @Autowired
     private ResourceLibraryService resourceLibraryService;
 
+    // Obtener todos los recursos
+    @GetMapping
+    public ResponseEntity<List<ResourceLibraryResponseDTO>> getAllResources() {
+        List<ResourceLibraryResponseDTO> resources = resourceLibraryService.getAllResources();
+        return ResponseEntity.ok(resources);
+    }
+
     // Endpoint para crear un nuevo recurso
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResourceLibraryResponseDTO> createResource(

@@ -21,6 +21,13 @@ public class ResourceLibraryService {
     @Autowired
     private ResourceLibraryRepository resourceLibraryRepository;
 
+    public List<ResourceLibraryResponseDTO> getAllResources() {
+        List<ResourceLibrary> resources = resourceLibraryRepository.findAll();
+        return resources.stream()
+                .map(this::convertToResponseDTO)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public ResourceLibraryResponseDTO createResource(ResourceLibraryRequestDTO dto) throws IOException {
         // Validate fields manually if necessary
