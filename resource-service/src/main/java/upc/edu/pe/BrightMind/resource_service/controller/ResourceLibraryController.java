@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import upc.edu.pe.BrightMind.resource_service.model.dtos.ResourceLibraryMinimalDTO;
 import upc.edu.pe.BrightMind.resource_service.model.dtos.ResourceLibraryRequestDTO;
 import upc.edu.pe.BrightMind.resource_service.model.dtos.ResourceLibraryResponseDTO;
 
@@ -23,6 +24,24 @@ public class ResourceLibraryController {
 
     @Autowired
     private ResourceLibraryService resourceLibraryService;
+
+    // Endpoint para visualizar el PDF directamente en el navegador
+    @GetMapping("/{id}/view")
+    public ResponseEntity<byte[]> viewPdf(@PathVariable Long id) {
+        byte[] pdfBytes = resourceLibraryService.downloadPdf(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+    }
+
+    // Obtener todos los recursos
+    @GetMapping
+    public ResponseEntity<List<ResourceLibraryResponseDTO>> getAllResources() {
+        List<ResourceLibraryResponseDTO> resources = resourceLibraryService.getAllResources();
+        return ResponseEntity.ok(resources);
+    }
 
     // Endpoint para crear un nuevo recurso
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -70,32 +89,23 @@ public class ResourceLibraryController {
         return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
     }
 
-    @Operation(summary = "Obtener recursos por grado")
     @GetMapping("/grade/{grade}")
-    public ResponseEntity<List<ResourceLibraryResponseDTO>> getResourcesByGrade(
-            @Parameter(description = "Grado", required = true)
-            @PathVariable Grade grade) {
-        List<ResourceLibraryResponseDTO> resources = resourceLibraryService.getResourcesByGrade(grade);
+    public ResponseEntity<List<ResourceLibraryMinimalDTO>> getResourcesByGrade(@PathVariable Grade grade) {
+        List<ResourceLibraryMinimalDTO> resources = resourceLibraryService.getResourcesByGrade(grade);
         return ResponseEntity.ok(resources);
     }
 
-    @Operation(summary = "Obtener recursos por sujeto")
     @GetMapping("/subject/{subject}")
-    public ResponseEntity<List<ResourceLibraryResponseDTO>> getResourcesBySubject(
-            @Parameter(description = "Sujeto", required = true)
-            @PathVariable Subject subject) {
-        List<ResourceLibraryResponseDTO> resources = resourceLibraryService.getResourcesBySubject(subject);
+    public ResponseEntity<List<ResourceLibraryMinimalDTO>> getResourcesBySubject(@PathVariable Subject subject) {
+        List<ResourceLibraryMinimalDTO> resources = resourceLibraryService.getResourcesBySubject(subject);
         return ResponseEntity.ok(resources);
     }
 
-    @Operation(summary = "Obtener recursos por grado y sujeto")
     @GetMapping("/grade/{grade}/subject/{subject}")
-    public ResponseEntity<List<ResourceLibraryResponseDTO>> getResourcesByGradeAndSubject(
-            @Parameter(description = "Grado", required = true)
+    public ResponseEntity<List<ResourceLibraryMinimalDTO>> getResourcesByGradeAndSubject(
             @PathVariable Grade grade,
-            @Parameter(description = "Sujeto", required = true)
             @PathVariable Subject subject) {
-        List<ResourceLibraryResponseDTO> resources = resourceLibraryService.getResourcesByGradeAndSubject(grade, subject);
+        List<ResourceLibraryMinimalDTO> resources = resourceLibraryService.getResourcesByGradeAndSubject(grade, subject);
         return ResponseEntity.ok(resources);
     }
 }
