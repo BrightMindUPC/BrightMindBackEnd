@@ -3,6 +3,7 @@ package upc.edu.pe.BrightMind.resource_service.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import upc.edu.pe.BrightMind.resource_service.model.dtos.ResourceLibraryMinimalDTO;
 import upc.edu.pe.BrightMind.resource_service.model.dtos.ResourceLibraryRequestDTO;
 import upc.edu.pe.BrightMind.resource_service.model.dtos.ResourceLibraryResponseDTO;
 import upc.edu.pe.BrightMind.resource_service.model.entities.Grade;
@@ -20,6 +21,13 @@ public class ResourceLibraryService {
 
     @Autowired
     private ResourceLibraryRepository resourceLibraryRepository;
+
+    public List<ResourceLibraryResponseDTO> getAllResources() {
+        List<ResourceLibrary> resources = resourceLibraryRepository.findAll();
+        return resources.stream()
+                .map(this::convertToResponseDTO)
+                .collect(Collectors.toList());
+    }
 
     @Transactional
     public ResourceLibraryResponseDTO createResource(ResourceLibraryRequestDTO dto) throws IOException {
@@ -86,24 +94,15 @@ public class ResourceLibraryService {
         return dto;
     }
 
-    public List<ResourceLibraryResponseDTO> getResourcesByGrade(Grade grade) {
-        List<ResourceLibrary> resources = resourceLibraryRepository.findByGrade(grade);
-        return resources.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
+    public List<ResourceLibraryMinimalDTO> getResourcesByGrade(Grade grade) {
+        return resourceLibraryRepository.findByGradeExcludePdf(grade);
     }
 
-    public List<ResourceLibraryResponseDTO> getResourcesBySubject(Subject subject) {
-        List<ResourceLibrary> resources = resourceLibraryRepository.findBySubject(subject);
-        return resources.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
+    public List<ResourceLibraryMinimalDTO> getResourcesBySubject(Subject subject) {
+        return resourceLibraryRepository.findBySubjectExcludePdf(subject);
     }
 
-    public List<ResourceLibraryResponseDTO> getResourcesByGradeAndSubject(Grade grade, Subject subject) {
-        List<ResourceLibrary> resources = resourceLibraryRepository.findByGradeAndSubject(grade, subject);
-        return resources.stream()
-                .map(this::convertToResponseDTO)
-                .collect(Collectors.toList());
+    public List<ResourceLibraryMinimalDTO> getResourcesByGradeAndSubject(Grade grade, Subject subject) {
+        return resourceLibraryRepository.findByGradeAndSubjectExcludePdf(grade, subject);
     }
 }
